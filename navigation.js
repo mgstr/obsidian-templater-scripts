@@ -1,4 +1,6 @@
 // <% tp.user.navigation(tp.file.title) %>
+// <% tp.user.navigation(tp.file.title, "ru") %>
+// <% tp.user.navigation(tp.file.title, "est", {weekday:"long"}) %>
 
 const day_in_milis = 24 * 60 * 60 * 1000;
 function e2d(d) {
@@ -37,9 +39,5 @@ function navigation(title, locale, weekday={weekday:"short"}) {
     t = get_next_day(e, +day_in_milis);
     return `${link(y)} ${e2weekday_name(e)} ${link(t)}`;
 }
-
-console.log(navigation("2023-11-10", "ru-ru"));
-console.log(navigation("2023-11-06"));
-console.log(navigation("some text"));
 
 module.exports = navigation;
