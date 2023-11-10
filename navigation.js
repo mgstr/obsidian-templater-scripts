@@ -17,9 +17,9 @@ function navigation(title, locale, weekday={weekday:"short"}) {
     if (isNaN(e)) {
         return `error: invalid title format, expecting YYYY-MM-DD, but was: ${title}`;
     }
-    const day_in_milis = 24 * 60 * 60 * 1000;
-    const y = getNextWorking(e, -day_in_milis);
-    const t = getNextWorking(e, +day_in_milis);
+    const milisecondsInDay = 24 * 60 * 60 * 1000;
+    const y = getNextWorking(e, -milisecondsInDay);
+    const t = getNextWorking(e, +milisecondsInDay);
     return `${link(y)} ${e2weekdayName(e)} ${link(t)}`;
 }
 
