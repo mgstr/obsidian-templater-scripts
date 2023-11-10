@@ -1,7 +1,6 @@
 // <% tp.user.navigation(tp.file.title) %>
 
 const day_in_milis = 24 * 60 * 60 * 1000;
-const dn = ["вс","пн","вт","ср","чт","пт","сб"];
 function e2d(d) {
     return new Date(d);
 }
@@ -10,9 +9,6 @@ function e2title(e) {
 }
 function e2weekday(e) {
     return e2d(e).getDay();
-}
-function e2weekday_name(e) {
-    return dn[e2weekday(e)];
 }
 function isWorkingDay(wd) {
     return wd >= 1 && wd <= 5;
@@ -25,10 +21,14 @@ function get_next_day(e, delta) {
     }
     return get_next_day(next, delta);
 }
-function link(e) {
-    return `[[${e2title(e)}|${e2weekday_name(e)}]]`;
-}
-function navigation(title) {
+function navigation(title, locale, weekday={weekday:"short"}) {
+    function e2weekday_name(e) {
+        return e2d(e).toLocaleDateString(locale, weekday);
+    }
+    function link(e) {
+        return `[[${e2title(e)}|${e2weekday_name(e)}]]`;
+    }
+    
     const e = Date.parse(title);
     if (isNaN(e)) {
         return `error: invalid title format, expecting YYYY-MM-DD, but was: ${title}`;
@@ -38,7 +38,7 @@ function navigation(title) {
     return `${link(y)} ${e2weekday_name(e)} ${link(t)}`;
 }
 
-console.log(navigation("2023-11-10"));
+console.log(navigation("2023-11-10", "ru-ru"));
 console.log(navigation("2023-11-06"));
 console.log(navigation("some text"));
 
