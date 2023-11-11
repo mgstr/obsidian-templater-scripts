@@ -18,7 +18,7 @@ output: `[[2023-11-03|Fri]] Mon [[2023-11-07|Tue]]`
 <% tp.user.navigation(tp.file.title, "ru") %>
 ```
 
-output: `[[2023-11-09|чт]] пт [[2023-11-13|пн]]`
+output: `'[[2023-11-03|пт]] пн [[2023-11-07|вт]]'`
 
 ### using Estonian locale and long weekday names
 
@@ -27,6 +27,14 @@ output: `[[2023-11-09|чт]] пт [[2023-11-13|пн]]`
 ```
 
 output: `[[2023-11-03|reede]] esmaspäev [[2023-11-07|teisipäev]]`
+
+### using Belorusian locale and long date format
+
+```
+<% tp.user.navigation(tp.file.title, "bel", {}) %>
+```
+
+output: `'[[2023-11-03|3.11.2023]] 6.11.2023 [[2023-11-07|7.11.2023]]'`
 
 ### in case the page title is not in the expected format
 

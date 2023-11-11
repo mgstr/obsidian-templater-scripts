@@ -9,8 +9,8 @@ function getNextWorkingDay(e, delta) {
     }
     return getNextWorkingDay(next, delta);
 }
-function navigation(title, locale, weekday={weekday:"short"}) {
-    const e2weekdayName = (e) => e2d(e).toLocaleDateString(locale, weekday);
+function navigation(title, locale, dateTimeFormatOptions={weekday:"short"}) {
+    const e2weekdayName = (e) => e2d(e).toLocaleDateString(locale, dateTimeFormatOptions);
     const link = (e) => `[[${e2title(e)}|${e2weekdayName(e)}]]`;
     
     const e = Date.parse(title);
@@ -23,3 +23,9 @@ function navigation(title, locale, weekday={weekday:"short"}) {
     return `${link(y)} ${e2weekdayName(e)} ${link(t)}`;
 }
 module.exports = navigation;
+
+console.log(navigation("2023-11-06"));
+console.log(navigation("2023-11-06", "ru"));
+console.log(navigation("2023-11-06", "est", {weekday:"long"}));
+console.log(navigation("2023-11-06", "bel", {}));
+console.log(navigation("some text"));
