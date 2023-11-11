@@ -13,7 +13,7 @@ function navigation(title, locale, dateTimeFormatOptions={weekday:"short"}) {
     const e2weekdayName = (e) => e2d(e).toLocaleDateString(locale, dateTimeFormatOptions);
     const link = (e) => `[[${e2title(e)}|${e2weekdayName(e)}]]`;
     
-    const e = Date.parse(title);
+    const e = Date.parse(title);    // e epoch time in milliseconds
     if (isNaN(e)) {
         return `error: invalid title format, expecting YYYY-MM-DD, but was: ${title}`;
     }
@@ -23,9 +23,3 @@ function navigation(title, locale, dateTimeFormatOptions={weekday:"short"}) {
     return `${link(y)} ${e2weekdayName(e)} ${link(t)}`;
 }
 module.exports = navigation;
-
-console.log(navigation("2023-11-06"));
-console.log(navigation("2023-11-06", "ru"));
-console.log(navigation("2023-11-06", "est", {weekday:"long"}));
-console.log(navigation("2023-11-06", "bel", {}));
-console.log(navigation("some text"));
